@@ -9,7 +9,7 @@
   <title>DanceLDM: Latent-based diffusion model for dance generation and editing conditioned on music and text prompt</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> 
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -130,6 +130,29 @@
   </div>
 </section>
 
+  <!-- 新增的用戶輸入表單 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Generate Dance</h2>
+        <form id="promptForm">
+          <div class="field">
+            <label class="label" for="prompt">Enter your text prompt:</label>
+            <div class="control">
+              <input class="input" type="text" id="prompt" name="prompt" required>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-link" type="submit">Generate</button>
+          </div>
+        </form>
+        <div id="result" class="content" style="margin-top: 20px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+  
   
 <section class="section">
   <div class="columns is-centered has-text-centered">
@@ -308,5 +331,32 @@
   </div>
 </footer>
 
+  
+<script>
+document.getElementById('promptForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const prompt = document.getElementById('prompt').value;
+  const resultDiv = document.getElementById('result');
+
+  fetch('http://127.0.0.1:5000/generate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ prompt: prompt }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    resultDiv.innerHTML = `<p>${data.result}</p>`;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    resultDiv.innerHTML = '<p>An error occurred while generating the result.</p>';
+  });
+});
+</script>
+
+  
 </body>
 </html>
