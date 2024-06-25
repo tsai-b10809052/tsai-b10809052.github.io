@@ -159,7 +159,12 @@ body {
 }
 
 .publication-image img {
+  .publication-image img {
   max-width: 100%;
-  width: 80%; 
-  height: auto; 
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 }
