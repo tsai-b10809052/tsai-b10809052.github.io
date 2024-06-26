@@ -341,7 +341,7 @@ document.getElementById('promptForm').addEventListener('submit', function(event)
   const prompt = document.getElementById('prompt').value;
   const resultDiv = document.getElementById('result');
 
-  fetch('http://127.0.0.1:5000/generate', {
+  fetch('http://140.118.157.8:5000/generate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
