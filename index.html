@@ -333,7 +333,7 @@
   </div>
 </footer>
 
-  
+
 <script>
 document.getElementById('promptForm').addEventListener('submit', function(event) {
   event.preventDefault();
@@ -344,7 +344,7 @@ document.getElementById('promptForm').addEventListener('submit', function(event)
   // 清空之前的結果
   resultDiv.innerHTML = '<p>Generating...</p>';
 
-  fetch('http://127.0.0.1:5000/generate', {
+  fetch('http://your-server-domain/generate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -353,17 +353,7 @@ document.getElementById('promptForm').addEventListener('submit', function(event)
   })
   .then(response => response.json())
   .then(data => {
-    resultDiv.innerHTML = `
-      <div>
-        <img src="${data.image_url}?${new Date().getTime()}" alt="Generated Panorama">
-      </div>
-      <div>
-        <audio controls>
-          <source src="${data.music_url}?${new Date().getTime()}" type="audio/wav">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    `;
+    resultDiv.innerHTML = `<img src="${data.result}?${new Date().getTime()}" alt="Generated Panorama">`;
   })
   .catch(error => {
     console.error('Error:', error);
