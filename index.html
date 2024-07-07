@@ -350,7 +350,7 @@ document.getElementById('promptForm').addEventListener('submit', function(event)
   })
   .then(response => response.json())
   .then(data => {
-    resultDiv.innerHTML = `<p>${data.result}</p>`;
+    resultDiv.innerHTML = `<img src="${data.result}" alt="Generated Panorama">`;
   })
   .catch(error => {
     console.error('Error:', error);
@@ -358,7 +358,6 @@ document.getElementById('promptForm').addEventListener('submit', function(event)
   });
 });
 </script>
-
   
 </body>
 </html>
